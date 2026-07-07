@@ -12,7 +12,7 @@ export default function PernikahanPage() {
       <div className="container mx-auto px-4">
         
         {/* Breadcrumb */}
-        <Link href="/layanan" className="inline-flex items-center text-sm text-kemenag-600 hover:text-kemenag-800 mb-6 transition">
+        <Link href="/" className="inline-flex items-center text-sm text-kemenag-600 hover:text-kemenag-800 mb-6 transition">
           <ArrowLeft className="w-4 h-4 mr-2" /> Kembali ke Layanan
         </Link>
 
@@ -116,6 +116,17 @@ export default function PernikahanPage() {
               <p className="text-2xl font-bold text-kemenag-600 mb-2">GRATIS</p>
               <p className="text-xs text-gray-500">
                 *Sesuai PP No. 48 Tahun 2014 tentang PNBP
+              </p>
+            </div>
+
+            <div className="bg-white rounded-lg shadow-md p-6">
+              <h3 className="font-bold text-gray-800 mb-4">Biaya</h3>
+              <p className="text-gray-600 text-sm mb-3">
+                Pernikahan yang dilaksanakan di Luar KUA atau di luar jam kerja dikenakan biaya administrasi sebesar:
+              </p>
+              <p className="text-2xl font-bold text-red-600 mb-2">Rp 600.000</p>
+              <p className="text-xs text-gray-500">
+                * Peraturan Pemerintah PP Nomor 59 Tahun 2018
               </p>
             </div>
           </div>

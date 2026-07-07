@@ -16,7 +16,7 @@ export default function Header() {
           <Link href="/" className="flex items-center space-x-3">
             <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center flex-shrink-0">
               <span className="text-kemenag-600 font-bold text-[9px] text-center leading-tight">
-                KUA<br/>PARUNG<br/>PANJANG
+                <img src="/favicon.ico" alt="Logo KUA" className="w-full h-full object-contain" />
               </span>
             </div>
             <div className="hidden sm:block">
