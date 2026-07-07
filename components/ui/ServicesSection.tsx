@@ -32,12 +32,6 @@ const services = [
     desc: "Sosialisasi dan bimbingan keagamaan",
     link: "/layanan/penyuluhan"
   },
-  {
-    icon: <Building className="w-12 h-12" />,
-    title: "Urusan Masjid",
-    desc: "Pembinaan dan pengawasan masjid",
-    link: "/layanan/masjid"
-  }
 ];
 
 export default function ServicesSection() {
