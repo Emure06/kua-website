@@ -9,41 +9,16 @@ import {
   MessageCircle
 } from 'lucide-react';
 import Link from 'next/link';
+import { getPetugasById } from '@/lib/PortofolioService'; // <-- PERHATIKAN: p kecil!
 
 export const metadata = {
-  title: "Portofolio - Sukron Naim, S.Sy",
-  description: "Daftar Riwayat Hidup Sukron Naim, Penyuluh Agama Islam",
-};
-
-// Data portofolio - KEY HARUS STRING (bukan number)
-const portofolioData: Record<string, {
-  nama: string;
-  jabatan: string;
-  ttl: string;
-  telepon: string;
-  foto: string;
-  pendidikan: Array<{ jenjang: string; nama: string; tahun: string }>;
-  deskripsi: string;
-}> = {
-  "5": {
-    nama: "SUKRON NAIM, S.Sy.",
-    jabatan: "Penyuluh Ahli Agama Pertama",
-    ttl: "Bogor, 07 April 1992",
-    telepon: "081382387845",
-    foto: "https://via.placeholder.com/300",
-    pendidikan: [
-      { jenjang: "SD", nama: "SDN 04 Parung Panjang", tahun: "" },
-      { jenjang: "SMP/MTs", nama: "MTs MH Parung Panjang", tahun: "" },
-      { jenjang: "SMA/MA", nama: "Ma'had Al-Malibo Parung Panjang", tahun: "" },
-      { jenjang: "S1", nama: "Universitas Islam Negeri (UIN) Jakarta", tahun: "" },
-    ],
-    deskripsi: "Bapak Sukron Naim, S.Sy. merupakan Penyuluh Ahli Agama Pertama yang bertugas di wilayah Kecamatan Parung Panjang. Beliau aktif memberikan bimbingan dan penyuluhan keagamaan Islam kepada masyarakat. Bapak Sukron juga mengurus perhubungan dengan wakaf dan zakat, serta mendukung program-program keluarga sakinah di wilayahnya. Dengan pengalaman dan dedikasinya, beliau berkomitmen untuk meningkatkan kualitas pelayanan keagamaan di Kecamatan Parung Panjang."
-  }
+  title: "Portofolio - KUA Parung Panjang",
+  description: "Daftar Riwayat Hidup Petugas KUA Parung Panjang",
 };
 
 export default async function PortofolioPage({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = await params; // <-- await di sini!
-  const data = portofolioData[id];
+  const { id } = await params;
+  const data = await getPetugasById(id);
 
   if (!data) {
     return (
@@ -215,7 +190,7 @@ export default async function PortofolioPage({ params }: { params: Promise<{ id:
 
       </div>
 
-        {/* Tombol buat wa nya */}
+      {/* FLOATING WHATSAPP BUTTON */}
       <a 
         href={waLink}
         target="_blank"
@@ -228,5 +203,3 @@ export default async function PortofolioPage({ params }: { params: Promise<{ id:
     </div>
   );
 }
-
- {/* Part paling hard kontol kontol */}
