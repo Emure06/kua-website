@@ -25,7 +25,7 @@ const portofolioData: Record<string, {
   pendidikan: Array<{ jenjang: string; nama: string; tahun: string }>;
   deskripsi: string;
 }> = {
-  "1": {
+  "5": {
     nama: "SUKRON NAIM, S.Sy.",
     jabatan: "Penyuluh Ahli Agama Pertama",
     ttl: "Bogor, 07 April 1992",

@@ -1,29 +1,23 @@
 import { FileText, ArrowLeft, User } from 'lucide-react';
 import Link from 'next/link';
+import { getPetugasData } from '@/lib/petugasService';
 
 export const metadata = {
   title: "Layanan Wakaf & Zakat - KUA Parung Panjang",
   description: "Pelayanan administrasi wakaf dan zakat",
 };
 
-// Data petugas/pejabat yang menangani
-const petugasData = [
-  {
-    id: 1,
-    nama: "SUKRON NAIM, S.Sy.",
-    jabatan: "Penyuluh Agama Islam",
-    foto: "https://via.placeholder.com/150",
-    profil: "/portofolio/1"
-  },
-];
+export default async function WakafZakatPage() {
+  const data = await getPetugasData();
 
-export default function WakafZakatPage() {
+  const petugasWakafZakat = data.penyuluh.filter(p => p.id === '5');
+
   return (
     <div className="min-h-screen bg-gray-50 pt-24 pb-12">
       <div className="container mx-auto px-4">
         
         {/* Breadcrumb */}
-        <Link href="/" className="inline-flex items-center text-sm text-kemenag-600 hover:text-kemenag-800 mb-6 transition">
+        <Link href="/layanan" className="inline-flex items-center text-sm text-kemenag-600 hover:text-kemenag-800 mb-6 transition">
           <ArrowLeft className="w-4 h-4 mr-2" /> Kembali ke Layanan
         </Link>
 
@@ -81,7 +75,7 @@ export default function WakafZakatPage() {
           </div>
         </div>
 
-        {/* INFORMASI ORANG YANG BERKAITAN - Bawah */}
+        {/* INFORMASI PETUGAS YANG BERKAITAN - Bawah */}
         <div className="bg-white rounded-lg shadow-md p-6 md:p-8">
           <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
             Informasi Petugas yang Berkaitan
@@ -90,40 +84,40 @@ export default function WakafZakatPage() {
             Hubungi petugas berikut untuk informasi lebih lanjut
           </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            {petugasData.map((petugas) => (
-              <Link 
-                key={petugas.id} 
-                href={petugas.profil}
-                className="group flex items-center p-4 border-2 border-gray-200 rounded-lg hover:border-kemenag-500 hover:shadow-md transition-all"
-              >
-                <div className="w-16 h-16 rounded-full overflow-hidden flex-shrink-0 bg-gray-100">
-                  {petugas.foto ? (
-                    <img 
-                      src={petugas.foto} 
-                      alt={petugas.nama}
-                      className="w-full h-full object-cover"
-                    />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center">
-                      <User className="w-8 h-8 text-gray-400" />
-                    </div>
-                  )}
-                </div>
-
-                {/* Info */}
-                <div className="ml-4 flex-1">
-                  <h3 className="font-bold text-gray-800 text-sm group-hover:text-kemenag-600 transition">
-                    {petugas.nama}
-                  </h3>
-                  <p className="text-xs text-gray-500 mt-1">{petugas.jabatan}</p>
-                </div>
-
-                {/* Icon Arrow */}
-                <ArrowLeft className="w-4 h-4 text-gray-400 rotate-180 group-hover:text-kemenag-600 transition" />
-              </Link>
-            ))}
-          </div>
+          {/* Cuma nampilin Pa Sukron (ID 5) */}
+          {petugasWakafZakat.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-3xl mx-auto">
+              {petugasWakafZakat.map((petugas) => (
+                <Link 
+                  key={petugas.id} 
+                  href={`/portofolio/${petugas.id}`}
+                  className="group flex items-center p-4 border-2 border-gray-200 rounded-lg hover:border-kemenag-500 hover:shadow-md transition-all"
+                >
+                  <div className="w-16 h-16 rounded-full overflow-hidden flex-shrink-0 bg-gray-100">
+                    {petugas.foto && petugas.foto.trim() !== "" ? (
+                      <img 
+                        src={petugas.foto} 
+                        alt={petugas.nama}
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center">
+                        <User className="w-8 h-8 text-gray-400" />
+                      </div>
+                    )}
+                  </div>
+                  <div className="ml-4 flex-1">
+                    <h3 className="font-bold text-gray-800 text-sm group-hover:text-kemenag-600 transition">
+                      {petugas.nama}
+                    </h3>
+                    <p className="text-xs text-gray-500 mt-1">{petugas.jabatan}</p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          ) : (
+            <p className="text-center text-gray-500">Data petugas belum tersedia.</p>
+          )}
 
           {/* Catatan */}
           <div className="mt-6 p-4 bg-kemenag-50 rounded-lg border-l-4 border-kemenag-600">
