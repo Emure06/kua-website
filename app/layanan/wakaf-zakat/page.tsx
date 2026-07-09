@@ -10,12 +10,13 @@ export const metadata = {
 export default async function WakafZakatPage() {
   const data = await getPetugasData();
 
+  // Filter cuma Pa Sukron (ID 5)
   const petugasWakafZakat = data.penyuluh.filter(p => p.id === '5');
 
   return (
     <div className="min-h-screen bg-gray-50 pt-24 pb-12">
       <div className="container mx-auto px-4">
-
+        
         {/* Breadcrumb */}
         <Link href="/layanan" className="inline-flex items-center text-sm text-kemenag-600 hover:text-kemenag-800 mb-6 transition">
           <ArrowLeft className="w-4 h-4 mr-2" /> Kembali ke Layanan
@@ -34,7 +35,7 @@ export default async function WakafZakatPage() {
 
         {/* 2 BOX PEMBERITAHUAN - Atas */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-
+          
           {/* Box 1: Wakaf */}
           <div className="bg-gradient-to-br from-blue-700 to-blue-900 rounded-lg p-8 text-white shadow-lg">
             <div className="flex items-center mb-4">
@@ -84,40 +85,45 @@ export default async function WakafZakatPage() {
             Hubungi petugas berikut untuk informasi lebih lanjut
           </p>
 
-          {/* Cuma nampilin Pa Sukron (ID 5) */}
+          {/* Kartu Petugas - Layout Foto Portrait (Persegi Panjang) */}
           {petugasWakafZakat.length > 0 ? (
             <div className="flex justify-center">
               {petugasWakafZakat.map((petugas) => (
-                <Link
-                  key={petugas.id}
+                <Link 
+                  key={petugas.id} 
                   href={`/portofolio/${petugas.id}`}
-                  className="block w-full max-w-md bg-white rounded-xl shadow-lg hover:shadow-xl transition-all border border-gray-100 overflow-hidden"
+                  className="group block w-full max-w-sm bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 overflow-hidden hover:-translate-y-1"
                 >
-                  <div className="p-6">
-                    {/* Foto */}
-                    <div className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden bg-gray-100 border-4 border-kemenag-50">
+                  {/* Foto Section */}
+                  <div className="relative bg-gradient-to-br from-kemenag-50 to-kemenag-100 pt-8 pb-12">
+                    <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-br from-kemenag-600 to-kemenag-700"></div>
+                    
+                    {/* UBAHAN DI SINI: w-40 h-52 rounded-2xl (Persegi panjang vertikal) */}
+                    <div className="relative mx-auto w-40 h-52 rounded-2xl overflow-hidden border-4 border-white shadow-xl bg-white">
                       {petugas.foto && petugas.foto.trim() !== "" ? (
-                        <img
-                          src={petugas.foto}
+                        <img 
+                          src={petugas.foto} 
                           alt={petugas.nama}
                           className="w-full h-full object-cover"
                         />
                       ) : (
-                        <div className="w-full h-full flex items-center justify-center">
-                          <User className="w-16 h-16 text-gray-400" />
+                        <div className="w-full h-full flex items-center justify-center bg-gray-100">
+                          <User className="w-20 h-20 text-gray-400" />
                         </div>
                       )}
                     </div>
+                  </div>
 
-                    {/* Info */}
-                    <div className="text-center">
-                      <h3 className="font-bold text-gray-800 text-lg mb-1 hover:text-kemenag-600 transition">
-                        {petugas.nama}
-                      </h3>
-                      <p className="text-sm text-gray-500 mb-3">NIP. {petugas.nip}</p>
-                      <div className="inline-block bg-kemenag-600 text-white text-xs font-semibold px-4 py-2 rounded-full">
-                        {petugas.jabatan}
-                      </div>
+                  {/* Info Section */}
+                  <div className="px-6 pb-6 pt-2 text-center">
+                    <h3 className="font-bold text-gray-800 text-lg mb-2 group-hover:text-kemenag-600 transition">
+                      {petugas.nama}
+                    </h3>
+                    <p className="text-sm text-gray-500 mb-4">
+                      NIP. {petugas.nip || '-'}
+                    </p>
+                    <div className="inline-block bg-kemenag-600 text-white text-xs font-semibold px-4 py-2 rounded-full">
+                      {petugas.jabatan}
                     </div>
                   </div>
                 </Link>

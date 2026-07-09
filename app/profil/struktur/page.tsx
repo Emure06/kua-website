@@ -31,7 +31,8 @@ export default async function StrukturPage() {
         {data.kepala ? (
           <div className="max-w-md mx-auto mb-12">
             <div className="bg-white rounded-lg shadow-lg border-t-4 border-kemenag-600 p-6 text-center">
-              <FotoProfil url={data.kepala.foto} nama={data.kepala.nama} size="w-32 h-32" />
+              {/* Ukuran Portrait: w-36 h-48 */}
+              <FotoProfil url={data.kepala.foto} nama={data.kepala.nama} size="w-36 h-48" />
               <h2 className="text-xl font-bold text-gray-800">{data.kepala.nama}</h2>
               <p className="text-xs text-gray-500 mb-2">NIP. {data.kepala.nip}</p>
               <div className="inline-block bg-kemenag-600 text-white text-xs font-semibold px-4 py-1 rounded-full">
@@ -54,7 +55,8 @@ export default async function StrukturPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
               {data.penghulu.map((item, index) => (
                 <div key={index} className="bg-white rounded-lg shadow-md p-5 text-center border-l-4 border-kemenag-500">
-                  <FotoProfil url={item.foto} nama={item.nama} size="w-20 h-20" />
+                  {/* Ukuran Portrait: w-28 h-36 */}
+                  <FotoProfil url={item.foto} nama={item.nama} size="w-28 h-36" />
                   <h4 className="font-bold text-gray-800">{item.nama}</h4>
                   <p className="text-xs text-gray-500 mb-2">NIP. {item.nip}</p>
                   <p className="text-sm text-kemenag-700 font-semibold">{item.jabatan}</p>
@@ -75,7 +77,8 @@ export default async function StrukturPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
               {data.penyuluh.map((item, index) => (
                 <div key={index} className="bg-white rounded-lg shadow-sm p-4 text-center border border-gray-100 hover:shadow-md transition">
-                  <FotoProfil url={item.foto} nama={item.nama} size="w-16 h-16" />
+                  {/* Ukuran Portrait: w-24 h-32 */}
+                  <FotoProfil url={item.foto} nama={item.nama} size="w-24 h-32" />
                   <h4 className="font-semibold text-gray-800 text-sm">{item.nama}</h4>
                   <p className="text-xs text-gray-500 mb-1">NIP. {item.nip}</p>
                   <p className="text-xs text-kemenag-600 font-medium">{item.jabatan}</p>
@@ -96,7 +99,8 @@ export default async function StrukturPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
               {data.staf.map((item, index) => (
                 <div key={index} className="bg-white rounded-lg shadow-sm p-4 text-center border border-gray-100 hover:shadow-md transition">
-                  <FotoProfil url={item.foto} nama={item.nama} size="w-16 h-16" />
+                  {/* Ukuran Portrait: w-24 h-32 */}
+                  <FotoProfil url={item.foto} nama={item.nama} size="w-24 h-32" />
                   <h4 className="font-semibold text-gray-800 text-sm">{item.nama}</h4>
                   <p className="text-xs text-gray-500 mb-1">NIP. {item.nip}</p>
                   <p className="text-xs text-kemenag-600 font-medium">{item.jabatan}</p>
