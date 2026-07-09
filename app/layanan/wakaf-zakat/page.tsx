@@ -15,7 +15,7 @@ export default async function WakafZakatPage() {
   return (
     <div className="min-h-screen bg-gray-50 pt-24 pb-12">
       <div className="container mx-auto px-4">
-        
+
         {/* Breadcrumb */}
         <Link href="/layanan" className="inline-flex items-center text-sm text-kemenag-600 hover:text-kemenag-800 mb-6 transition">
           <ArrowLeft className="w-4 h-4 mr-2" /> Kembali ke Layanan
@@ -34,7 +34,7 @@ export default async function WakafZakatPage() {
 
         {/* 2 BOX PEMBERITAHUAN - Atas */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-          
+
           {/* Box 1: Wakaf */}
           <div className="bg-gradient-to-br from-blue-700 to-blue-900 rounded-lg p-8 text-white shadow-lg">
             <div className="flex items-center mb-4">
@@ -86,37 +86,45 @@ export default async function WakafZakatPage() {
 
           {/* Cuma nampilin Pa Sukron (ID 5) */}
           {petugasWakafZakat.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-3xl mx-auto">
+            <div className="flex justify-center">
               {petugasWakafZakat.map((petugas) => (
-                <Link 
-                  key={petugas.id} 
+                <Link
+                  key={petugas.id}
                   href={`/portofolio/${petugas.id}`}
-                  className="group flex items-center p-4 border-2 border-gray-200 rounded-lg hover:border-kemenag-500 hover:shadow-md transition-all"
+                  className="block w-full max-w-md bg-white rounded-xl shadow-lg hover:shadow-xl transition-all border border-gray-100 overflow-hidden"
                 >
-                  <div className="w-16 h-16 rounded-full overflow-hidden flex-shrink-0 bg-gray-100">
-                    {petugas.foto && petugas.foto.trim() !== "" ? (
-                      <img 
-                        src={petugas.foto} 
-                        alt={petugas.nama}
-                        className="w-full h-full object-cover"
-                      />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center">
-                        <User className="w-8 h-8 text-gray-400" />
+                  <div className="p-6">
+                    {/* Foto */}
+                    <div className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden bg-gray-100 border-4 border-kemenag-50">
+                      {petugas.foto && petugas.foto.trim() !== "" ? (
+                        <img
+                          src={petugas.foto}
+                          alt={petugas.nama}
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center">
+                          <User className="w-16 h-16 text-gray-400" />
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Info */}
+                    <div className="text-center">
+                      <h3 className="font-bold text-gray-800 text-lg mb-1 hover:text-kemenag-600 transition">
+                        {petugas.nama}
+                      </h3>
+                      <p className="text-sm text-gray-500 mb-3">NIP. {petugas.nip}</p>
+                      <div className="inline-block bg-kemenag-600 text-white text-xs font-semibold px-4 py-2 rounded-full">
+                        {petugas.jabatan}
                       </div>
-                    )}
-                  </div>
-                  <div className="ml-4 flex-1">
-                    <h3 className="font-bold text-gray-800 text-sm group-hover:text-kemenag-600 transition">
-                      {petugas.nama}
-                    </h3>
-                    <p className="text-xs text-gray-500 mt-1">{petugas.jabatan}</p>
+                    </div>
                   </div>
                 </Link>
               ))}
             </div>
           ) : (
-            <p className="text-center text-gray-500">Data petugas belum tersedia.</p>
+            <p className="text-center text-gray-500 py-8">Data petugas belum tersedia.</p>
           )}
 
           {/* Catatan */}

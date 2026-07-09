@@ -23,17 +23,19 @@ export async function getPetugasById(id: string) {
     const parsed = Papa.parse(csvText, { header: true, skipEmptyLines: true });
     const allData = parsed.data as Petugas[];
 
+    // Cari data berdasarkan ID
     const petugas = allData.find(item => item.id === id);
 
     if (!petugas) {
       return null;
     }
 
+    // Format data untuk portofolio
     return {
       nama: petugas.nama,
       jabatan: petugas.jabatan,
-      ttl: "Bogor, 07 April 1992",
-      telepon: "081382387845",
+      ttl: "Bogor, 07 April 1992", // Ini bisa ditambahin kolom TTL di Sheets nanti
+      telepon: "081382387845", // Ini bisa ditambahin kolom Telepon di Sheets nanti
       foto: petugas.foto || "https://via.placeholder.com/300",
       pendidikan: [
         { jenjang: "SD", nama: "SDN 04 Parung Panjang", tahun: "" },
