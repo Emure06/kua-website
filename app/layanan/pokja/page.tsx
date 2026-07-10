@@ -76,7 +76,7 @@ export default function PokjaPage() {
           <div className="text-center mb-12">
             <div className="inline-flex items-center justify-center w-20 h-20 bg-kemenag-100 rounded-full mb-6">
               <Users className="w-10 h-10 text-kemenag-600" />
-            </div>
+            </div>   
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-3">
               Kelompok Kerja (Pokja)
             </h1>

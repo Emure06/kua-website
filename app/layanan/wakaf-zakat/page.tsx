@@ -47,11 +47,16 @@ export default async function WakafZakatPage() {
                 Persyaratan Wakaf:
               </h3>
               <ul className="space-y-2 text-sm">
-                <li>• Sertifikat tanah asli</li>
-                <li>• Fotokopi KTP Wakif</li>
-                <li>• Fotokopi KK</li>
-                <li>• Surat keterangan dari Kelurahan</li>
-                <li>• Akta Ikrar Wakaf</li>
+                <li>• KTP WAKIF (YANG MENYERAHKAN WAKAF)</li>
+                <li>• KTP NAZHIR (YANG MENERIMA WAKAF)</li>
+                <li>• KTP PENGURUS NAZHIR 5 ORANG</li>
+                <li>• KTP SAKSI 2 ORANG</li>
+                <li>• SURAT TANAH (SERTIFIKAT, AKTA HIBAH, LATTER C, SPPT)</li>
+                <li>• SURAT KETERANGAN TIDAK SENGKETA DARI DESA</li>
+                <li>• SURAT KETERANGAN TANAH WAKAF</li>
+                <li>• SURAT KETERANGAN AHLI WARIS (JIKA TANAH WARISAN)</li>
+                <li>• DENAH LOKASI</li>
+                <li>• MATERAI Rp 10.000 3 LEMBAR</li>
               </ul>
             </div>
           </div>
