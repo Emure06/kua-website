@@ -18,7 +18,7 @@ export default async function WakafZakatPage() {
       <div className="container mx-auto px-4">
         
         {/* Breadcrumb */}
-        <Link href="/layanan" className="inline-flex items-center text-sm text-kemenag-600 hover:text-kemenag-800 mb-6 transition">
+        <Link href="/" className="inline-flex items-center text-sm text-kemenag-600 hover:text-kemenag-800 mb-6 transition">
           <ArrowLeft className="w-4 h-4 mr-2" /> Kembali ke Layanan
         </Link>
 

@@ -14,10 +14,8 @@ export default function Header() {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center flex-shrink-0">
-              <span className="text-kemenag-600 font-bold text-[9px] text-center leading-tight">
-                <img src="/favicon.ico" alt="Logo KUA" className="w-full h-full object-contain" />
-              </span>
+            <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center flex-shrink-0 p-1">
+              <img src="/favicon.ico" alt="Logo KUA" className="w-full h-full object-contain" />
             </div>
             <div className="hidden sm:block">
               <h1 className="font-bold text-[18px] text-white leading-tight">Kantor Urusan Agama</h1>
@@ -31,10 +29,12 @@ export default function Header() {
             <li><Link href="/profil" className="hover:text-kemenag-200 transition">Profil</Link></li>
             <li><Link href="/layanan" className="hover:text-kemenag-200 transition">Layanan</Link></li>
             <li><Link href="/bimwin" className="hover:text-kemenag-200 transition">Bimwin</Link></li>
+            <li><Link href="/pokja" className="hover:text-kemenag-200 transition">Pokja</Link></li>
+            <li><Link href="/galeri" className="hover:text-kemenag-200 transition">Galeri</Link></li>
             <li><Link href="/kontak" className="hover:text-kemenag-200 transition">Kontak</Link></li>
           </ul>
 
-          {/* Mobile Menu Button - KOTAK HIJAU */}
+          {/* Mobile Menu Button */}
           <button
             type="button"
             className="md:hidden bg-kemenag-600 hover:bg-kemenag-700 text-white p-2 rounded transition"
@@ -46,7 +46,7 @@ export default function Header() {
         </div>
       </nav>
 
-      {/* Mobile Menu Dropdown - PANEL PUTIH */}
+      {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
         <div className="md:hidden bg-white shadow-lg border-t">
           <ul className="divide-y divide-gray-200">
@@ -56,7 +56,7 @@ export default function Header() {
                 className="block px-4 py-3 text-gray-800 hover:bg-gray-50"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Home
+                Beranda
               </Link>
             </li>
             
@@ -113,13 +113,28 @@ export default function Header() {
                     </Link>
                   </li>
                   <li>
-                    <Link href="/layanan/wakaf" className="block px-8 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                      Wakaf
+                    <Link href="/bimwin" className="block px-8 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                      Bimbingan Perkawinan
                     </Link>
                   </li>
                   <li>
-                    <Link href="/layanan/zakat" className="block px-8 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                      Zakat
+                    <Link href="/layanan/keluarga-sakinah" className="block px-8 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                      Keluarga Sakinah
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/layanan/wakaf-zakat" className="block px-8 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                      Wakaf & Zakat
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/layanan/penyuluhan" className="block px-8 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                      Penyuluhan Agama
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/layanan/pokja" className="block px-8 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                      Pokja
                     </Link>
                   </li>
                 </ul>
