@@ -1,7 +1,7 @@
 import { ArrowLeft, Users, Target, ClipboardList, TrendingUp, CheckCircle, Calendar, MapPin, Clock } from 'lucide-react';
 import Link from 'next/link';
 import ScrollReveal from '@/components/ui/ScrollReveal';
-
+import Hero from '@/components/ui/hero';
 export const metadata = {
   title: "Pokja - Kelompok Kerja KUA Parung Panjang",
   description: "Informasi tentang Kelompok Kerja (Pokja) di KUA Kecamatan Parung Panjang",

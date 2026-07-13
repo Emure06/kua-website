@@ -1,19 +1,40 @@
 'use client';
 import Link from 'next/link';
 import { Menu, X, ChevronDown } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [profilOpen, setProfilOpen] = useState(false);
   const [layananOpen, setLayananOpen] = useState(false);
 
+  const headerRef = useRef<HTMLDivElement>(null);
+
+  const closeAllMenus = () => {
+    setMobileMenuOpen(false);
+    setProfilOpen(false);
+    setLayananOpen(false);
+  };
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (headerRef.current && !headerRef.current.contains(event.target as Node)) {
+        closeAllMenus();
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   return (
-    <header className="absolute top-0 left-0 right-0 z-50">
+    <header className="absolute top-0 left-0 right-0 z-50" ref={headerRef}>
       <nav className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-3">
+          <Link href="/" className="flex items-center space-x-3" onClick={closeAllMenus}>
             <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center flex-shrink-0 p-1">
               <img src="/favicon.ico" alt="Logo KUA" className="w-full h-full object-contain" />
             </div>
@@ -54,7 +75,7 @@ export default function Header() {
               <Link 
                 href="/" 
                 className="block px-4 py-3 text-gray-800 hover:bg-gray-50"
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={closeAllMenus}
               >
                 Beranda
               </Link>
@@ -63,7 +84,10 @@ export default function Header() {
             {/* Profil dengan Dropdown */}
             <li>
               <button
-                onClick={() => setProfilOpen(!profilOpen)}
+                onClick={() => {
+                  setProfilOpen(!profilOpen);
+                  setLayananOpen(false);
+                }}
                 className="w-full flex items-center justify-between px-4 py-3 text-gray-800 hover:bg-gray-50"
               >
                 <span>Profil</span>
@@ -75,17 +99,17 @@ export default function Header() {
               {profilOpen && (
                 <ul className="bg-gray-50 divide-y divide-gray-100">
                   <li>
-                    <Link href="/profil/visi-misi" className="block px-8 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                    <Link href="/profil/visi-misi" className="block px-8 py-2 text-sm text-gray-700 hover:bg-gray-100" onClick={closeAllMenus}>
                       Visi & Misi
                     </Link>
                   </li>
                   <li>
-                    <Link href="/profil/struktur" className="block px-8 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                    <Link href="/profil/struktur" className="block px-8 py-2 text-sm text-gray-700 hover:bg-gray-100" onClick={closeAllMenus}>
                       Struktur Organisasi
                     </Link>
                   </li>
                   <li>
-                    <Link href="/profil/sejarah" className="block px-8 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                    <Link href="/profil/sejarah" className="block px-8 py-2 text-sm text-gray-700 hover:bg-gray-100" onClick={closeAllMenus}>
                       Sejarah
                     </Link>
                   </li>
@@ -96,7 +120,10 @@ export default function Header() {
             {/* Layanan dengan Dropdown */}
             <li>
               <button
-                onClick={() => setLayananOpen(!layananOpen)}
+                onClick={() => {
+                  setLayananOpen(!layananOpen);
+                  setProfilOpen(false);
+                }}
                 className="w-full flex items-center justify-between px-4 py-3 text-gray-800 hover:bg-gray-50"
               >
                 <span>Layanan</span>
@@ -108,44 +135,55 @@ export default function Header() {
               {layananOpen && (
                 <ul className="bg-gray-50 divide-y divide-gray-100">
                   <li>
-                    <Link href="/layanan/pernikahan" className="block px-8 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                    <Link href="/layanan/pernikahan" className="block px-8 py-2 text-sm text-gray-700 hover:bg-gray-100" onClick={closeAllMenus}>
                       Pernikahan
                     </Link>
                   </li>
                   <li>
-                    <Link href="/bimwin" className="block px-8 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                    <Link href="/bimwin" className="block px-8 py-2 text-sm text-gray-700 hover:bg-gray-100" onClick={closeAllMenus}>
                       Bimbingan Perkawinan
                     </Link>
                   </li>
                   <li>
-                    <Link href="/layanan/keluarga-sakinah" className="block px-8 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                    <Link href="/layanan/keluarga-sakinah" className="block px-8 py-2 text-sm text-gray-700 hover:bg-gray-100" onClick={closeAllMenus}>
                       Keluarga Sakinah
                     </Link>
                   </li>
                   <li>
-                    <Link href="/layanan/wakaf-zakat" className="block px-8 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                    <Link href="/layanan/wakaf-zakat" className="block px-8 py-2 text-sm text-gray-700 hover:bg-gray-100" onClick={closeAllMenus}>
                       Wakaf & Zakat
                     </Link>
                   </li>
                   <li>
-                    <Link href="/layanan/penyuluhan" className="block px-8 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                    <Link href="/layanan/penyuluhan" className="block px-8 py-2 text-sm text-gray-700 hover:bg-gray-100" onClick={closeAllMenus}>
                       Penyuluhan Agama
                     </Link>
                   </li>
                   <li>
-                    <Link href="/layanan/pokja" className="block px-8 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                      Pokja
+                    <Link href="/layanan/masjid" className="block px-8 py-2 text-sm text-gray-700 hover:bg-gray-100" onClick={closeAllMenus}>
+                      Urusan Masjid
                     </Link>
                   </li>
                 </ul>
               )}
             </li>
 
+            {/* Pokja */}
+            <li>
+              <Link 
+                href="/pokja" 
+                className="block px-4 py-3 text-gray-800 hover:bg-gray-50"
+                onClick={closeAllMenus}
+              >
+                Pokja
+              </Link>
+            </li>
+
             <li>
               <Link 
                 href="/galeri" 
                 className="block px-4 py-3 text-gray-800 hover:bg-gray-50"
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={closeAllMenus}
               >
                 Galeri
               </Link>
@@ -155,7 +193,7 @@ export default function Header() {
               <Link 
                 href="/bimwin" 
                 className="block px-4 py-3 text-gray-800 hover:bg-gray-50"
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={closeAllMenus}
               >
                 Bimwin
               </Link>
@@ -165,7 +203,7 @@ export default function Header() {
               <Link 
                 href="/kontak" 
                 className="block px-4 py-3 text-gray-800 hover:bg-gray-50"
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={closeAllMenus}
               >
                 Kontak
               </Link>

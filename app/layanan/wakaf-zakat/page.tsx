@@ -11,7 +11,7 @@ export default async function WakafZakatPage() {
   const data = await getPetugasData();
 
   // Filter cuma Pa Sukron (ID 5)
-  const petugasWakafZakat = data.penyuluh.filter(p => p.id === '5');
+  const petugasWakafZakat = data.penyuluh.filter(p => p.id === '10');
 
   return (
     <div className="min-h-screen bg-gray-50 pt-24 pb-12">
